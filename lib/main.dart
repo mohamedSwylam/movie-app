@@ -1,20 +1,43 @@
+import 'package:bloc/bloc.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/shared/bloc_observer.dart';
+import 'package:movie_app/shared/network/remote/repository.dart';
+import 'package:movie_app/shared/network/remote/web_services.dart';
 import 'layout/app_layout.dart';
-void main() => runApp(MyApp());
+import 'layout/cubit/cubit.dart';
+import 'layout/cubit/states.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  runApp(MyApp());}
+class MyApp extends StatelessWidget
+{
+  MyApp(){
+    repository=Repository(WebServices());
+  }
+  Repository repository;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Movie App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return  MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) => AppCubit(repository),
+        ),
+      ],
+      child: BlocConsumer<AppCubit,AppStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'BreakingBad',
+            debugShowCheckedModeBanner: false,
+            home: AppLayout(),
+          );
+        },
       ),
-      home: HomeScreen(),
     );
   }
 }
