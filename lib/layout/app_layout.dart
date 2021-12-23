@@ -3,6 +3,8 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/shared/network/remote/repository.dart';
+import 'package:movie_app/shared/network/remote/web_services.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -23,7 +25,7 @@ class AppLayout extends StatelessWidget {
             actions: <Widget>[
               IconButton(
                   onPressed: () {
-                    print(AppCubit.get(context).movies.length);
+                    print(Repository(WebServices()).getPlayingNow());
                   },
                   icon: Icon(EvaIcons.searchOutline, color: Colors.white,)
               )

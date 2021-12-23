@@ -13,6 +13,7 @@ import 'layout/cubit/states.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  WebServices.init();
   runApp(MyApp());}
 class MyApp extends StatelessWidget
 {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget
     return  MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit(repository),
+          create: (BuildContext context) => AppCubit(repository)..getPlayingNow(),
         ),
       ],
       child: BlocConsumer<AppCubit,AppStates>(
