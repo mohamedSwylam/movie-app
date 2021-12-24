@@ -7,9 +7,6 @@ class AppInitialState extends AppStates {}
 class GetNowPlayingMoviesLoadingState extends AppStates {}
 
 class GetNowPlayingMoviesSuccessState extends AppStates {
-  final List<Movie> nowPlaying;
-
-  GetNowPlayingMoviesSuccessState(this.nowPlaying);
 }
 
 class GetNowPlayingMoviesErrorState extends AppStates {

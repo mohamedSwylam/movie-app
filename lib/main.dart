@@ -18,15 +18,13 @@ void main() async {
 class MyApp extends StatelessWidget
 {
   MyApp(){
-    repository=Repository(WebServices());
   }
-  Repository repository;
   @override
   Widget build(BuildContext context) {
     return  MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit(repository)..getPlayingNow(),
+          create: (BuildContext context) => AppCubit()..getPlayingNow(),
         ),
       ],
       child: BlocConsumer<AppCubit,AppStates>(

@@ -1,3 +1,4 @@
+/*
 
 
 import 'package:movie_app/models/movie.dart';
@@ -7,8 +8,7 @@ class Repository {
   final WebServices webServices;
 
   Repository(this.webServices);
-
-  Future<List<Movie>> getPlayingNow() {
+  Future<List<dynamic>> getPlayingNow() {
     WebServices.getData(
       url: 'now_playing',
       query: {
@@ -16,12 +16,12 @@ class Repository {
         'language': 'en-US',
       },
     ).then((value) {
-      return value.data['results']
-          .map((movie) => Movie.fromJson(movie))
-          .toList();
+       value.data['results'].map((movie) => Movie.fromJson(movie)).toList();
+      print(value.data['results']);
     }).catchError((error) {
       print(error.toString());
     });
-  }
 
 }
+
+*/

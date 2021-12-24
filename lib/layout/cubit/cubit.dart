@@ -8,15 +8,24 @@ import 'package:movie_app/shared/network/remote/repository.dart';
 import 'package:movie_app/shared/network/remote/web_services.dart';
 
 class AppCubit extends Cubit<AppStates> {
-  Repository repository;
-  List<Movie> playingNowMovies = [];
-  AppCubit(repository) : super(AppInitialState());
+  AppCubit() : super(AppInitialState());
+
   static AppCubit get(context) => BlocProvider.of(context);
-  List<Movie> getPlayingNow() {
-    repository.getPlayingNow().then((value) {
-      emit(GetNowPlayingMoviesSuccessState(value));
-      playingNowMovies = value;
+  Movie playingNowMovies ;
+  void getPlayingNow() {
+    emit(GetNowPlayingMoviesLoadingState());
+    WebServices.getData(
+      url: 'now_playing',
+      query: {
+        'api_key': 'a1ac2387d6e34edc9fb04a22d28198db',
+        'language': 'en-US',
+      },
+    ).then((value) {
+      playingNowMovies = Movie.fromJson(value.data);
+      emit(GetNowPlayingMoviesSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetNowPlayingMoviesErrorState(error.toString()));
     });
-    return playingNowMovies;
   }
 }
