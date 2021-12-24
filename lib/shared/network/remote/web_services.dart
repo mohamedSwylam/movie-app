@@ -9,7 +9,7 @@ class WebServices {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://api.themoviedb.org/3/movie/',
+        baseUrl: 'https://api.themoviedb.org/3/',
         receiveDataWhenStatusError: true,
       ),
     );

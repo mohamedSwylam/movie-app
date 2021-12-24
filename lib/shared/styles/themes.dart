@@ -6,7 +6,7 @@ import 'color.dart';
 
 ThemeData darkTheme = ThemeData(
   fontFamily: 'Jannah',
-  primarySwatch: Colors.amber,
+  primarySwatch: Colors.cyan,
   appBarTheme: AppBarTheme(
     elevation: 0.0,
   ),
@@ -65,7 +65,7 @@ ThemeData darkTheme = ThemeData(
 ThemeData lightTheme = ThemeData(
   fontFamily: 'Jannah',
   scaffoldBackgroundColor: Colors.grey.shade300,
-  primarySwatch: Colors.amber,
+  primarySwatch: Colors.cyan,
   primaryColor: Colors.grey.shade300,
   splashColor:  Colors.black,
   accentColor: defaultColor,

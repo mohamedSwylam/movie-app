@@ -14,3 +14,14 @@ class GetNowPlayingMoviesErrorState extends AppStates {
 
   GetNowPlayingMoviesErrorState(this.error);
 }
+
+class GetGenreLoadingState extends AppStates {}
+
+class GetGenreSuccessState extends AppStates {
+}
+
+class GetGenreErrorState extends AppStates {
+  final String error;
+
+  GetGenreErrorState(this.error);
+}

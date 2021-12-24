@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget
     return  MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit()..getPlayingNow(),
+          create: (BuildContext context) => AppCubit()..getPlayingNow()..getGenre(),
         ),
       ],
       child: BlocConsumer<AppCubit,AppStates>(
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget
           return MaterialApp(
             title: 'BreakingBad',
             debugShowCheckedModeBanner: false,
+            theme: ThemeData(),
             home: AppLayout(),
           );
         },
