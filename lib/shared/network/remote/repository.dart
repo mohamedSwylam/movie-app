@@ -1,5 +1,3 @@
-/*
-
 
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/shared/network/remote/web_services.dart';
@@ -21,7 +19,5 @@ class Repository {
     }).catchError((error) {
       print(error.toString());
     });
-
 }
 
-*/

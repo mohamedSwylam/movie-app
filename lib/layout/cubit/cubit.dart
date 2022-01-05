@@ -12,7 +12,7 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  Movie playingNowMovies ;
+  List <Movie>  playingNowMovies=[] ;
   void getPlayingNow() {
     emit(GetNowPlayingMoviesLoadingState());
     WebServices.getData(
@@ -29,6 +29,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetNowPlayingMoviesErrorState(error.toString()));
     });
   }
+
   Genre genre;
   void getGenre() {
     emit(GetGenreLoadingState());
