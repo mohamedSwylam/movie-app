@@ -12,14 +12,14 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  List <Movie>  playingNowMovies=[] ;
+  Movie playingNowMovies ;
   void getPlayingNow() {
     emit(GetNowPlayingMoviesLoadingState());
     WebServices.getData(
       url: GET_NOW_PLAYING,
       query: {
         'api_key': 'a1ac2387d6e34edc9fb04a22d28198db',
-        'language': 'en-US',
+          'language': 'en-US',
       },
     ).then((value) {
       playingNowMovies = Movie.fromJson(value.data);
@@ -31,7 +31,7 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   Genre genre;
-  void getGenre() {
+  Future<Genre> getGenre() {
     emit(GetGenreLoadingState());
     WebServices.getData(
       url: GET_GENRE,
@@ -47,4 +47,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetGenreErrorState(error.toString()));
     });
   }
+
+
+
 }
