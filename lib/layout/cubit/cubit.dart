@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/layout/cubit/states.dart';
 import 'package:movie_app/models/genre.dart';
@@ -12,8 +13,8 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  Movie playingNowMovies ;
-  void getPlayingNow() {
+  List<Movie> playingNowMovies;
+  Future<Movie> getPlayingNow() {
     emit(GetNowPlayingMoviesLoadingState());
     WebServices.getData(
       url: GET_NOW_PLAYING,
@@ -22,7 +23,10 @@ class AppCubit extends Cubit<AppStates> {
           'language': 'en-US',
       },
     ).then((value) {
-      playingNowMovies = Movie.fromJson(value.data);
+      List <dynamic> data = jsonDecode(value.data);
+      for(var item in data){
+        playingNowMovies.add(Movie.fromJson(item));
+      }
       emit(GetNowPlayingMoviesSuccessState());
     }).catchError((error) {
       print(error.toString());

@@ -17,14 +17,13 @@ void main() async {
   runApp(MyApp());}
 class MyApp extends StatelessWidget
 {
-  MyApp(){
-  }
+  MyApp(){}
   @override
   Widget build(BuildContext context) {
     return  MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit()..getPlayingNow()..getGenre(),
+          create: (BuildContext context) => AppCubit()..getPlayingNow(),
         ),
       ],
       child: BlocConsumer<AppCubit,AppStates>(

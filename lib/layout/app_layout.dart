@@ -59,7 +59,7 @@ class AppLayout extends StatelessWidget {
               if (connected) {
                 return Column(
                   children: [
-                    Container(
+                    /*Container(
                       height: 200.0,
                       child: PageIndicatorContainer(
                         align: IndicatorAlign.bottom,
@@ -166,8 +166,8 @@ class AppLayout extends StatelessWidget {
                           },
                         ),
                       ),
-                    ),
-                    Container(
+                    ),*/
+                    /*Container(
                       height: 307.0,
                       child: DefaultTabController(
                           length: cubit.genre.genres.length,
@@ -372,7 +372,7 @@ class AppLayout extends StatelessWidget {
                               }).toList(),
                             ),
                           )),
-                    ),
+                    ),*/
                   ],
                 );
               } else {
@@ -539,7 +539,7 @@ Widget buildNoInternetWidget() {
   );
 }
 
-Widget buildMovieItem(Results model) {
+Widget buildMovieItem( model) {
   return Padding(
     padding: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 15.0),
     child: GestureDetector(
