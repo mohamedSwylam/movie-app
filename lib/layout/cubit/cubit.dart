@@ -13,7 +13,7 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  List<Movie> playingNowMovies;
+  Movie playingNowMovies;
   Future<Movie> getPlayingNow() {
     emit(GetNowPlayingMoviesLoadingState());
     WebServices.getData(
@@ -23,10 +23,10 @@ class AppCubit extends Cubit<AppStates> {
           'language': 'en-US',
       },
     ).then((value) {
-      List <dynamic> data = jsonDecode(value.data);
-      for(var item in data){
+      playingNowMovies = Movie.fromJson(value.data);
+    /*  for(var item in playingNowMovies){
         playingNowMovies.add(Movie.fromJson(item));
-      }
+      }*/
       emit(GetNowPlayingMoviesSuccessState());
     }).catchError((error) {
       print(error.toString());
